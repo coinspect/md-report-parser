@@ -3,14 +3,14 @@ import { renderTemplate } from './Templates'
 
 export function RenderReports ({ metadataBlockTypeName }) {
 
-  const metadataRenderer = (tokens, idx, _options, env, self) => {
+  const metadataRenderer = (tokens: { [x: string]: any }, idx: string | number, _options: any, env: any, self: any) => {
     const token = tokens[idx]
     const metadata = token.content || {}
     const className = metadata[metadataBlockTypeName]
     return className === 'finding' ? renderTemplate('findingHeader', metadata) : ''
   }
 
-  const render = (tokens, idx, _options, env, self) => {
+  const render = (tokens: { [x: string]: any }, idx: string | number, _options: any, env: any, self: { renderToken: (arg0: any, arg1: any, arg2: any, arg3: any, arg4: any) => any }) => {
     const token = tokens[idx]
     if (token.nesting === 1) {
       const metadata = token.meta || {}
@@ -20,7 +20,7 @@ export function RenderReports ({ metadataBlockTypeName }) {
     return self.renderToken(tokens, idx, _options, env, self)
   }
 
-  const titleCb = (metadata) => {
+  const titleCb = (metadata: { [x: string]: any; title?: any; id?: any }) => {
     let { title, id } = metadata
     title = title || ''
     const className = metadata[metadataBlockTypeName]

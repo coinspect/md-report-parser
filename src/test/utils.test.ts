@@ -1,5 +1,5 @@
 import { assert } from 'chai'
-import { filterObjectFields, flipObject } from '../src/utils.js'
+import { filterObjectFields, flipObject } from '../utils'
 
 
 describe('flipObjects', function () {
