@@ -1,7 +1,7 @@
 import { renderTemplate } from './Templates'
 
 
-export function RenderReports ({ metadataBlockTypeName }) {
+export function RenderReports ({ metadataBlockTypeName } : any) {
 
   const metadataRenderer = (tokens: { [x: string]: any }, idx: string | number, _options: any, env: any, self: any) => {
     const token = tokens[idx]

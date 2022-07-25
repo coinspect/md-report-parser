@@ -14,7 +14,8 @@ const validateMetadata = (metadata: string | { impact: any; likelihood: any } | 
   return metadata
 }
 
-export const MetadataParser = ({ metadataCb } = {}) => (str: string, { blockType }: any) => {
+export const MetadataParser = ( data : {metadataCb? : any} = {} ) => (str: string, { blockType }: any) => {
+  let {metadataCb} = data;
   const metadata = validateMetadata(parseMetadata(str), blockType)
   if (typeof metadataCb === 'function') {
     metadataCb(JSON.parse(JSON.stringify(metadata)))

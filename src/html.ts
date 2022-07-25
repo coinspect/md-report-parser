@@ -2,7 +2,7 @@
 
 const getFieldAttributes = (name: string, value: unknown) => { return { class: `field-${name}` } }
 
-export const tag = (t: string, content: unknown, attrs: ArrayLike<unknown> | { [s: string]: unknown } | undefined) => {
+export const tag = (t: string, content: unknown, attrs?: ArrayLike<unknown> | { [s: string]: unknown } | undefined) => {
   if (Array.isArray(content)) content = content.join('\n')
   if (typeof content === 'boolean') content = `${content}`
   content = content || ''
