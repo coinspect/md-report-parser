@@ -2,9 +2,8 @@
   "name": "md-report-parser",
   "version": "1.0.0",
   "description": "Markdown parser for security reports",
-  "main": "index.js",
-  "type": "module",
-  "types": "index.d.ts",
+  "main": "out/index.js",
+  "types": "out/index.d.ts",
   "scripts": {
     "test": "jest test/*.ts"
   },
