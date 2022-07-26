@@ -4,6 +4,7 @@
   "description": "Markdown parser for security reports",
   "main": "index.js",
   "type": "module",
+  "types": "index.d.ts",
   "exports": {
     "require": "./index.cjs",
     "import": "./index.ts"
