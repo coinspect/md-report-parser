@@ -5,10 +5,6 @@
   "main": "index.js",
   "type": "module",
   "types": "index.d.ts",
-  "exports": {
-    "require": "./index.cjs",
-    "import": "./index.ts"
-  },
   "scripts": {
     "test": "jest test/*.ts"
   },

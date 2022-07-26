@@ -9,7 +9,7 @@ specifiers:
   jest: ^28.1.3
   markdown-it: ^13.0.1
   markdown-it-anchor: ^8.6.4
-  markdown-it-data-blocks: github:coinspect/markdown-it-data-blocks#ts/migration
+  markdown-it-data-blocks: coinspect/markdown-it-data-blocks#ts/migration
   markdown-it-highlightjs: ^4.0.1
   markdown-it-table-of-contents: ^0.6.0
   ts-jest: ^28.0.7
@@ -21,7 +21,7 @@ dependencies:
   highlightjs-solidity: 2.0.5
   markdown-it: 13.0.1
   markdown-it-anchor: 8.6.4_ea7kj7wzjkld5jo2noyjqxi764
-  markdown-it-data-blocks: github.com/coinspect/markdown-it-data-blocks/35f1266e064716a5d27adf1e44281a32aa185d87
+  markdown-it-data-blocks: github.com/coinspect/markdown-it-data-blocks/94f51b898bb6ce2d630ea68e03ab875f59da53d6
   markdown-it-highlightjs: 4.0.1
   markdown-it-table-of-contents: 0.6.0
   typescript: 4.7.4
@@ -2464,8 +2464,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/coinspect/markdown-it-data-blocks/35f1266e064716a5d27adf1e44281a32aa185d87:
-    resolution: {tarball: https://codeload.github.com/coinspect/markdown-it-data-blocks/tar.gz/35f1266e064716a5d27adf1e44281a32aa185d87}
+  github.com/coinspect/markdown-it-data-blocks/94f51b898bb6ce2d630ea68e03ab875f59da53d6:
+    resolution: {tarball: https://codeload.github.com/coinspect/markdown-it-data-blocks/tar.gz/94f51b898bb6ce2d630ea68e03ab875f59da53d6}
     name: markdown-it-data-blocks
     version: 1.0.0
     dependencies:
