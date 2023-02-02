@@ -26,6 +26,7 @@ impact: low
 likelihood: high
 location: /test/
 totalRisk: medium
+status: open
 fixed: false
 
 An orphan **text**
@@ -64,6 +65,7 @@ location: test
 impact: low
 likelihood: low
 fixed: false
+status: open
 totalRisk: low
 
 #### Description
@@ -88,6 +90,7 @@ location: test
 impact: low
 likelihood: low
 fixed: false
+status: open
 totalRisk: low
 
 #### Description

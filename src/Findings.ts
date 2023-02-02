@@ -42,8 +42,22 @@ export type FindingMetadata = {
   impactRate?: number
   likelihoodRate?: number
   riskRate?: number
-  fixed?: boolean
+  status?: FindingStatus
   location?: string
+}
+
+export enum FindingStatus {
+  open = 'Open',
+  fixed = 'Fixed',
+  partiallyFixed = 'Partially Fixed',
+  acknowledged = 'Acknowledged',
+  deferred = 'Deferred'
+}
+
+export enum FinalStatus {
+  ok = '√',
+  warning = '!',
+  problem = 'X'
 }
 
 interface ArraySortCallback<TypeOne> {
@@ -113,19 +127,35 @@ export const calculateTotalRisk = ({ impact, likelihood }: FindingMetadata) => {
   return { impact, likelihood, totalRisk, impactRate, likelihoodRate, riskRate }
 }
 
+export const calculateFinalStatus = (status: FindingStatus, totalRisk: string): FinalStatus => {
+  if(status === FindingStatus.fixed){
+    return FinalStatus.ok
+  }
+  if(totalRisk === HIGH || totalRisk === MEDIUM){
+    if(status === FindingStatus.open){
+      return FinalStatus.problem
+    }
+    return FinalStatus.warning
+  }
+  if(status === FindingStatus.partiallyFixed){
+    return FinalStatus.ok
+  }
+  return FinalStatus.warning
+}
+
 const NEW_FINDING_MODEL = {
   id: createFindingId(),
   title: 'Untitled Finding',
   location: '',
   likelihood: HIGH,
   impact: HIGH,
-  fixed: false
+  status: FindingStatus.open
 }
 
 export const parseFinding = (data: FindingMetadata) => {
   const { impact, likelihood, totalRisk } = calculateTotalRisk(data)
-  const fixed = data.fixed ? true : false
-  return Object.assign({ ...data }, { impact, likelihood, totalRisk, fixed })
+  const finalStatus = calculateFinalStatus(data.status || FindingStatus.open, totalRisk)
+  return Object.assign({ ...data }, { impact, likelihood, totalRisk, finalStatus })
 }
 
 export const FINDING_MODEL = parseFinding(NEW_FINDING_MODEL)
@@ -202,10 +232,6 @@ export const getFindings = (doc: MdDoc) => {
 }
 
 export const findingListFieds = [ID, TITLE, TOTAL_RISK, FIXED]
-
-interface Sarasa {
-  [key: string]: string
-}
 
 export const FINDING_LIST_TITLES = findingFields.reduce(
   (v: { [k: string]: string }, a: string) => {
