@@ -37,7 +37,7 @@ export function RenderReports({
         token.attrJoin('class', `${className}`)
       }
 
-      const fields: any = { totalRisk, fixed, likelihood, impact, finalStatus }
+      const fields: any = { totalRisk, likelihood, impact, status: finalStatus }
       for (const field in fields) {
         const value = fields[field]
         if (value) {

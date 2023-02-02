@@ -19,13 +19,10 @@ import {
   FINDING_ID_DEFAULT_PREFIX,
   FINDING_ID_SEPARATOR,
   FINDING_SECTIONS,
-  FIXED,
   HIGH,
   LOW,
   MEDIUM,
-  OPEN,
-  REPORTED,
-  NONE
+  REPORTED
 } from '../constants'
 import { createMdBlock, isMdBlock, MdBlock, MdDoc, mdDocToMd } from '../mdModel'
 import { arrayUnique } from '../utils'
