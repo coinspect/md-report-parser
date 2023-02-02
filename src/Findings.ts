@@ -242,7 +242,7 @@ export const FINDING_LIST_TITLES = findingFields.reduce(
 )
 
 export const FINDING_RESUME_RISKS = [HIGH, MEDIUM, LOW]
-export const FINDING_RESUME_FIELDS = [OPEN, FIXED, REPORTED]
+export const FINDING_RESUME_FIELDS: string[] = Object.values(FindingStatus).map(s => s.toString()).concat([REPORTED])
 
 export const FINDING_RESUME_TITLES = FINDING_RESUME_RISKS.reduce(
   (v: { [k: string]: string }, a) => {
@@ -260,22 +260,28 @@ export const getFindingResume = (findings: any[]) => {
   for (const risk of Object.values(RISK)) {
     const perRiskFindings = findings.filter((f) => f.totalRisk === risk)
     const total = perRiskFindings.length
-    const fixed = perRiskFindings.filter((f) => f[FIXED] === true).length
-    const partiallyFixed = perRiskFindings.filter(
-      (f) => f[FIXED] === NONE
-    ).length
+    const grouped = groupByStatus(perRiskFindings)
     resume[risk] = {
       [TOTAL]: total,
       [REPORTED]: total,
-      [FIXED]: fixed,
-      [NOT_FIXED]: total ? total - fixed : 0,
-      [PARTIALLY_FIXED]: partiallyFixed, // not working 'fixed' is boolean
-      [OPEN]: total ? total - fixed - partiallyFixed : 0,
-      [FIXED_PERCENT]: fixed ? `${Math.ceil((fixed * 100) / total)}%` : NONE
+      ...grouped,
+      [FIXED_PERCENT]: grouped[FindingStatus.fixed] ? `${Math.ceil((grouped[FindingStatus.fixed] * 100) / total)}%` : NONE
     }
   }
   return resume
 }
+
+const groupByStatus = (findings: any[]) => {
+  return findings.reduce((v: { [key: string]: any }, f) => {
+    const status = f.status
+    if (!v[status]) {
+      v[status] = 0
+    }
+    v[status] = v[status] + 1
+    return v
+  }, {})
+}
+  
 
 export const getFindingResumeData = (findings: any[]) => {
   const data = getFindingResume(findings)
