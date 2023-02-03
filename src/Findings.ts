@@ -155,7 +155,7 @@ const NEW_FINDING_MODEL = {
 export const parseFinding = (data: FindingMetadata) => {
   const { impact, likelihood, totalRisk } = calculateTotalRisk(data)
   const finalStatus = calculateFinalStatus(data.status || FindingStatus.open, totalRisk)
-  return Object.assign({ ...data }, { impact, likelihood, totalRisk, finalStatus })
+  return Object.assign({ ...data }, { impact, likelihood, totalRisk, status: data.status, finalStatus })
 }
 
 export const FINDING_MODEL = parseFinding(NEW_FINDING_MODEL)
