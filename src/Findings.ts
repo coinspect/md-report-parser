@@ -243,6 +243,7 @@ export const FINDING_LIST_TITLES = findingFields.reduce(
 
 export const FINDING_RESUME_RISKS = [HIGH, MEDIUM, LOW]
 export const FINDING_RESUME_FIELDS: string[] = Object.values(FindingStatus).map(s => s.toString()).concat([REPORTED])
+export const MANDATORY_RESUME_FIELDS = [FindingStatus.open.toString(), FindingStatus.fixed.toString(), REPORTED]
 
 export const FINDING_RESUME_TITLES = FINDING_RESUME_RISKS.reduce(
   (v: { [k: string]: string }, a) => {
@@ -289,11 +290,11 @@ export const getFindingResumeData = (findings: any[]) => {
     return []
   }
 
-  return FINDING_RESUME_FIELDS.reduce(
+  const resume = FINDING_RESUME_FIELDS.reduce(
     (v: { [key: string]: any }, field: string) => {
       v[field] = FINDING_RESUME_RISKS.reduce(
         (v: { [key: string]: string }, risk) => {
-          v[risk] = data[risk][field]
+          v[risk] = data[risk][field] || 0
           return v
         },
         {}
@@ -302,4 +303,15 @@ export const getFindingResumeData = (findings: any[]) => {
     },
     {}
   )
+
+  Object.keys(resume).forEach((k) => {
+    if(!MANDATORY_RESUME_FIELDS.includes(k)) {
+      // If all risks are 0, remove the field
+      if(Object.values(resume[k]).every(v => v === 0)) {
+        delete resume[k]
+      }
+    }
+  })
+
+  return resume
 }

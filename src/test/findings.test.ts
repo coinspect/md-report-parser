@@ -323,4 +323,49 @@ describe('findings', () => {
       })
     })
   })
+
+  describe('getfindingResumeDataWithCeroFields', () => {
+    const data = [
+      [HIGH, HIGH, FindingStatus.partiallyFixed],
+    ].map(([likelihood, impact, status]) => {
+      return { likelihood, impact, status }
+    })
+    const findings = data.map((f: any) => parseFinding(f))
+
+    const resumeData = getFindingResumeData(findings)
+    it(`should return [${FindingStatus.open}] findings`, () => {
+      expect(resumeData[FindingStatus.open]).toStrictEqual({
+        [HIGH]: 0,
+        [MEDIUM]: 0,
+        [LOW]: 0
+      })
+    })
+    it(`should return no [${FindingStatus.acknowledged}] findings`, () => {
+      expect(resumeData[FindingStatus.acknowledged]).toBeUndefined()
+    })
+    it(`should return no [${FindingStatus.deferred}] findings`, () => {
+      expect(resumeData[FindingStatus.deferred]).toBeUndefined()
+    })
+    it(`should return [${FindingStatus.fixed}] findings`, () => {
+      expect(resumeData[FindingStatus.fixed]).toStrictEqual({
+        [HIGH]: 0,
+        [MEDIUM]: 0,
+        [LOW]: 0
+      })
+    })
+    it(`should return [${FindingStatus.partiallyFixed}] findings`, () => {
+      expect(resumeData[FindingStatus.partiallyFixed]).toStrictEqual({
+        [HIGH]: 1,
+        [MEDIUM]: 0,
+        [LOW]: 0
+      })
+    })
+    it(`should return [${REPORTED}] findings`, () => {
+      expect(resumeData[REPORTED]).toStrictEqual({
+        [HIGH]: 1,
+        [MEDIUM]: 0,
+        [LOW]: 0
+      })
+    })
+  })
 })
