@@ -3,7 +3,7 @@ import yaml from 'yaml'
 import { parseFinding, isFindingType, FindingMetadata } from './Findings'
 import { LOW } from './constants'
 
-const filterFields = ['finalStatus']
+const filterFields = ['condition']
 
 export const parseMetadata = (str: string) => yaml.parse(str)
 

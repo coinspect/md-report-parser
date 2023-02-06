@@ -54,7 +54,7 @@ export enum FindingStatus {
   deferred = 'Deferred'
 }
 
-export enum FinalStatus {
+export enum Condition {
   ok = '√',
   warning = '⚠',
   problem = 'X'
@@ -127,20 +127,20 @@ export const calculateTotalRisk = ({ impact, likelihood }: FindingMetadata) => {
   return { impact, likelihood, totalRisk, impactRate, likelihoodRate, riskRate }
 }
 
-export const calculateFinalStatus = (status: FindingStatus, totalRisk: string): FinalStatus => {
+export const calculateCondition = (status: FindingStatus, totalRisk: string): Condition => {
   if(status === FindingStatus.fixed){
-    return FinalStatus.ok
+    return Condition.ok
   }
   if(totalRisk === HIGH || totalRisk === MEDIUM){
     if(status === FindingStatus.open){
-      return FinalStatus.problem
+      return Condition.problem
     }
-    return FinalStatus.warning
+    return Condition.warning
   }
   if(status === FindingStatus.partiallyFixed){
-    return FinalStatus.ok
+    return Condition.ok
   }
-  return FinalStatus.warning
+  return Condition.warning
 }
 
 const NEW_FINDING_MODEL = {
@@ -154,8 +154,8 @@ const NEW_FINDING_MODEL = {
 
 export const parseFinding = (data: FindingMetadata) => {
   const { impact, likelihood, totalRisk } = calculateTotalRisk(data)
-  const finalStatus = calculateFinalStatus(data.status || FindingStatus.open, totalRisk)
-  return Object.assign({ ...data }, { impact, likelihood, totalRisk, status: data.status, finalStatus })
+  const condition = calculateCondition(data.status || FindingStatus.open, totalRisk)
+  return Object.assign({ ...data }, { impact, likelihood, totalRisk, status: data.status, condition })
 }
 
 export const FINDING_MODEL = parseFinding(NEW_FINDING_MODEL)

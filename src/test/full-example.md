@@ -19,12 +19,11 @@ coverFile: cover.svg
 --- finding
 id: ISSUE-001
 title: Untitled Finding
-location: ""
 likelihood: high
 impact: high
 status: Open
 totalRisk: high
-fixed: false
+location: ""
 
 
 #### Description
@@ -44,12 +43,11 @@ fixed: false
 --- finding
 id: ISSUE-002
 title: Untitled Finding
-location: ""
 likelihood: high
 impact: high
 status: Fixed
 totalRisk: high
-fixed: false
+location: ""
 
 
 #### Description
@@ -69,12 +67,11 @@ fixed: false
 --- finding
 id: ISSUE-003
 title: Untitled Finding
-location: ""
 likelihood: high
 impact: high
 status: Partially Fixed
 totalRisk: high
-fixed: false
+location: ""
 
 
 #### Description
@@ -94,12 +91,11 @@ fixed: false
 --- finding
 id: ISSUE-004
 title: Untitled Finding
-location: ""
 likelihood: high
 impact: high
 status: Acknowledged
 totalRisk: high
-fixed: false
+location: ""
 
 
 #### Description
@@ -119,12 +115,11 @@ fixed: false
 --- finding
 id: ISSUE-005
 title: Untitled Finding
-location: ""
 likelihood: high
 impact: high
 status: Deferred
 totalRisk: high
-fixed: false
+location: ""
 
 
 #### Description
@@ -144,12 +139,11 @@ fixed: false
 --- finding
 id: ISSUE-006
 title: Untitled Finding
-location: ""
 likelihood: low
 impact: high
 status: Open
 totalRisk: medium
-fixed: false
+location: ""
 
 
 #### Description
@@ -169,12 +163,11 @@ fixed: false
 --- finding
 id: ISSUE-007
 title: Untitled Finding
-location: ""
 likelihood: medium
 impact: medium
 status: Fixed
 totalRisk: medium
-fixed: false
+location: ""
 
 
 #### Description
@@ -194,12 +187,11 @@ fixed: false
 --- finding
 id: ISSUE-008
 title: Untitled Finding
-location: ""
 likelihood: low
 impact: low
 status: Partially Fixed
 totalRisk: low
-fixed: false
+location: ""
 
 
 #### Description
@@ -219,12 +211,11 @@ fixed: false
 --- finding
 id: ISSUE-009
 title: Untitled Finding
-location: ""
 likelihood: medium
 impact: low
 status: Acknowledged
 totalRisk: low
-fixed: false
+location: ""
 
 
 #### Description
@@ -244,12 +235,11 @@ fixed: false
 --- finding
 id: ISSUE-010
 title: Untitled Finding
-location: ""
 likelihood: low
 impact: low
 status: Deferred
 totalRisk: low
-fixed: false
+location: ""
 
 
 #### Description
