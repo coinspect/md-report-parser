@@ -56,7 +56,7 @@ export enum FindingStatus {
 
 export enum FinalStatus {
   ok = '√',
-  warning = '!',
+  warning = '⚠',
   problem = 'X'
 }
 
