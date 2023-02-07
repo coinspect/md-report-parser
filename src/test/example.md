@@ -25,7 +25,7 @@ title: Finding title
 impact: low
 likelihood: high
 location: /test/
-totalRisk: medium
+risk: medium
 status: open
 fixed: false
 
@@ -66,7 +66,7 @@ impact: low
 likelihood: low
 fixed: false
 status: open
-totalRisk: low
+risk: low
 
 #### Description
 
@@ -91,7 +91,7 @@ impact: low
 likelihood: low
 fixed: false
 status: open
-totalRisk: low
+risk: low
 
 #### Description
 

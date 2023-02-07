@@ -6,7 +6,7 @@ impact: low
 likelihood: low
 fixed: false
 status: open
-totalRisk: low
+risk: low
 
 #### Description
 

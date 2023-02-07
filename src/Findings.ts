@@ -38,7 +38,7 @@ export type FindingMetadata = {
   id?: string
   impact: string
   likelihood: string
-  totalRisk?: string
+  risk?: string
   impactRate?: number
   likelihoodRate?: number
   riskRate?: number
@@ -118,13 +118,13 @@ export const calculateTotalRisk = ({ impact, likelihood }: FindingMetadata) => {
   const impactRate = IMPACT[impact as keyof typeof IMPACT]
   const likelihoodRate = LIKELIHOOD[likelihood as keyof typeof LIKELIHOOD]
   const riskRate = Math.floor((impactRate + likelihoodRate) / 2)
-  const totalRisk = RISK[riskRate as keyof typeof RISK]
+  const risk = RISK[riskRate as keyof typeof RISK]
   const flippedImpact = flipObject(IMPACT)
   const flippedLikelihood = flipObject(LIKELIHOOD)
   impact = flippedImpact[impactRate as keyof typeof flippedImpact]
   likelihood =
     flippedLikelihood[likelihoodRate as keyof typeof flippedLikelihood]
-  return { impact, likelihood, totalRisk, impactRate, likelihoodRate, riskRate }
+  return { impact, likelihood, risk, impactRate, likelihoodRate, riskRate }
 }
 
 export const calculateCondition = (status: FindingStatus, totalRisk: string): Condition => {
@@ -153,9 +153,9 @@ const NEW_FINDING_MODEL = {
 }
 
 export const parseFinding = (data: FindingMetadata) => {
-  const { impact, likelihood, totalRisk } = calculateTotalRisk(data)
-  const condition = calculateCondition(data.status || FindingStatus.open, totalRisk)
-  return Object.assign({ ...data }, { impact, likelihood, totalRisk, status: data.status, condition })
+  const { impact, likelihood, risk } = calculateTotalRisk(data)
+  const condition = calculateCondition(data.status || FindingStatus.open, risk)
+  return Object.assign({ ...data }, { impact, likelihood, risk, status: data.status, condition })
 }
 
 export const FINDING_MODEL = parseFinding(NEW_FINDING_MODEL)
@@ -259,7 +259,7 @@ export const getFindingResume = (findings: any[]) => {
     return
   }
   for (const risk of Object.values(RISK)) {
-    const perRiskFindings = findings.filter((f) => f.totalRisk === risk)
+    const perRiskFindings = findings.filter((f) => f.risk === risk)
     const total = perRiskFindings.length
     const grouped = groupByStatus(perRiskFindings)
     resume[risk] = {

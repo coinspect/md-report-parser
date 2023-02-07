@@ -72,7 +72,7 @@ describe('findings', () => {
       it(`${JSON.stringify(params)}, should result ${JSON.stringify({
         totalRisk
       })}`, () => {
-        expect(calculateTotalRisk(params).totalRisk).toBe(totalRisk)
+        expect(calculateTotalRisk(params).risk).toBe(totalRisk)
       })
     }
   })
