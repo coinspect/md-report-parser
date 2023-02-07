@@ -127,17 +127,20 @@ export const calculateTotalRisk = ({ impact, likelihood }: FindingMetadata) => {
   return { impact, likelihood, risk, impactRate, likelihoodRate, riskRate }
 }
 
-export const calculateCondition = (status: FindingStatus, totalRisk: string): Condition => {
-  if(status === FindingStatus.fixed){
+export const calculateCondition = (
+  status: FindingStatus,
+  totalRisk: string
+): Condition => {
+  if (status === FindingStatus.fixed) {
     return Condition.ok
   }
-  if(totalRisk === HIGH || totalRisk === MEDIUM){
-    if(status === FindingStatus.open){
+  if (totalRisk === HIGH || totalRisk === MEDIUM) {
+    if (status === FindingStatus.open) {
       return Condition.problem
     }
     return Condition.warning
   }
-  if(status === FindingStatus.partiallyFixed){
+  if (status === FindingStatus.partiallyFixed) {
     return Condition.ok
   }
   return Condition.warning
@@ -155,7 +158,10 @@ const NEW_FINDING_MODEL = {
 export const parseFinding = (data: FindingMetadata) => {
   const { impact, likelihood, risk } = calculateTotalRisk(data)
   const condition = calculateCondition(data.status || FindingStatus.open, risk)
-  return Object.assign({ ...data }, { impact, likelihood, risk, status: data.status, condition })
+  return Object.assign(
+    { ...data },
+    { impact, likelihood, risk, status: data.status, condition }
+  )
 }
 
 export const FINDING_MODEL = parseFinding(NEW_FINDING_MODEL)
@@ -242,8 +248,14 @@ export const FINDING_LIST_TITLES = findingFields.reduce(
 )
 
 export const FINDING_RESUME_RISKS = [HIGH, MEDIUM, LOW]
-export const FINDING_RESUME_FIELDS: string[] = Object.values(FindingStatus).map(s => s.toString()).concat([REPORTED])
-export const MANDATORY_RESUME_FIELDS = [FindingStatus.open.toString(), FindingStatus.fixed.toString(), REPORTED]
+export const FINDING_RESUME_FIELDS: string[] = Object.values(FindingStatus)
+  .map((s) => s.toString())
+  .concat([REPORTED])
+export const MANDATORY_RESUME_FIELDS = [
+  FindingStatus.open.toString(),
+  FindingStatus.fixed.toString(),
+  REPORTED
+]
 
 export const FINDING_RESUME_TITLES = FINDING_RESUME_RISKS.reduce(
   (v: { [k: string]: string }, a) => {
@@ -266,7 +278,9 @@ export const getFindingResume = (findings: any[]) => {
       [TOTAL]: total,
       [REPORTED]: total,
       ...grouped,
-      [FIXED_PERCENT]: grouped[FindingStatus.fixed] ? `${Math.ceil((grouped[FindingStatus.fixed] * 100) / total)}%` : NONE
+      [FIXED_PERCENT]: grouped[FindingStatus.fixed]
+        ? `${Math.ceil((grouped[FindingStatus.fixed] * 100) / total)}%`
+        : NONE
     }
   }
   return resume
@@ -282,7 +296,6 @@ const groupByStatus = (findings: any[]) => {
     return v
   }, {})
 }
-  
 
 export const getFindingResumeData = (findings: any[]) => {
   const data = getFindingResume(findings)
@@ -305,9 +318,9 @@ export const getFindingResumeData = (findings: any[]) => {
   )
 
   Object.keys(resume).forEach((k) => {
-    if(!MANDATORY_RESUME_FIELDS.includes(k)) {
+    if (!MANDATORY_RESUME_FIELDS.includes(k)) {
       // If all risks are 0, remove the field
-      if(Object.values(resume[k]).every(v => v === 0)) {
+      if (Object.values(resume[k]).every((v) => v === 0)) {
         delete resume[k]
       }
     }

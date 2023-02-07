@@ -6,7 +6,6 @@ date: February 2023
 version: v0001
 coverFile: cover.svg
 
-
 /--
 
 # Smart Contract Audit
@@ -14,7 +13,6 @@ coverFile: cover.svg
 [[toc]]
 
 ## Detailed Findings
-
 
 --- finding
 id: ISSUE-001
@@ -24,7 +22,6 @@ impact: high
 status: Open
 totalRisk: high
 location: ""
-
 
 #### Description
 
@@ -49,7 +46,6 @@ status: Fixed
 totalRisk: high
 location: ""
 
-
 #### Description
 
 [...]
@@ -72,7 +68,6 @@ impact: high
 status: Partially Fixed
 totalRisk: high
 location: ""
-
 
 #### Description
 
@@ -97,7 +92,6 @@ status: Acknowledged
 totalRisk: high
 location: ""
 
-
 #### Description
 
 [...]
@@ -120,7 +114,6 @@ impact: high
 status: Deferred
 totalRisk: high
 location: ""
-
 
 #### Description
 
@@ -145,7 +138,6 @@ status: Open
 totalRisk: medium
 location: ""
 
-
 #### Description
 
 [...]
@@ -168,7 +160,6 @@ impact: medium
 status: Fixed
 totalRisk: medium
 location: ""
-
 
 #### Description
 
@@ -193,7 +184,6 @@ status: Partially Fixed
 totalRisk: low
 location: ""
 
-
 #### Description
 
 [...]
@@ -217,7 +207,6 @@ status: Acknowledged
 totalRisk: low
 location: ""
 
-
 #### Description
 
 [...]
@@ -240,7 +229,6 @@ impact: low
 status: Deferred
 totalRisk: low
 location: ""
-
 
 #### Description
 
@@ -267,4 +255,3 @@ location: ""
 ## Disclaimer
 
 [...]
-

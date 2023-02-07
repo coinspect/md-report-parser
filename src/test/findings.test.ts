@@ -325,11 +325,11 @@ describe('findings', () => {
   })
 
   describe('getfindingResumeDataWithCeroFields', () => {
-    const data = [
-      [HIGH, HIGH, FindingStatus.partiallyFixed],
-    ].map(([likelihood, impact, status]) => {
-      return { likelihood, impact, status }
-    })
+    const data = [[HIGH, HIGH, FindingStatus.partiallyFixed]].map(
+      ([likelihood, impact, status]) => {
+        return { likelihood, impact, status }
+      }
+    )
     const findings = data.map((f: any) => parseFinding(f))
 
     const resumeData = getFindingResumeData(findings)

@@ -7,7 +7,7 @@ const filterFields = ['condition']
 
 export const parseMetadata = (str: string) => yaml.parse(str)
 
-export const metadataToMd = (metadata: {[key: string]: any}): string => {
+export const metadataToMd = (metadata: { [key: string]: any }): string => {
   const filteredMetadata = Object.keys(metadata)
     .filter((k) => !filterFields.includes(k))
     .reduce((obj: any, key) => {
