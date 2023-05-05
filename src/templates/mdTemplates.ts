@@ -38,5 +38,13 @@ ${createFinding()}
 ## Disclaimer
 
 ${TXT_PLACEHOLDER}
+
+## Appendix
+
+### File hashes
+
+\`\`\`tech-bits
+1234567890abcdef1234567890abcdef12345678 contracts/MyContract.sol
+\`\`\`
   `
 }
