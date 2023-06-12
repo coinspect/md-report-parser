@@ -102,7 +102,7 @@ export const FINDING_STATUS = {
   deferred: 'Deferred'
 } as const
 
-export type FindingStatus = (typeof FINDING_STATUS)[keyof typeof FINDING_STATUS]
+export type FindingStatus = typeof FINDING_STATUS[keyof typeof FINDING_STATUS]
 
 export const CONDITIONS = {
   ok: '✓',
@@ -110,4 +110,4 @@ export const CONDITIONS = {
   problem: 'X'
 } as const
 
-export type Condition = (typeof CONDITIONS)[keyof typeof CONDITIONS]
+export type Condition = typeof CONDITIONS[keyof typeof CONDITIONS]
