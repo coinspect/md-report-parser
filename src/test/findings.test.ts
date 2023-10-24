@@ -15,7 +15,9 @@ import {
   FINDING_MODEL,
   sortFindingFields,
   isAllowedInfoImpact,
-  createFindigsExampleMetadata
+  createFindigsExampleMetadata,
+  getFindingsData,
+  FINDING_SECTIONS_PROPS
 } from '../Findings'
 import {
   ALLOWED_INFO_IMPACT,
@@ -440,6 +442,68 @@ describe('findings', () => {
     const findings = createFindigsExampleMetadata()
     it('findings.length should be equal to all posible combinations', () => {
       expect(findings.length).toBe(total)
+    })
+  })
+
+  const testFindingData = (finding: any) => {
+    for (const s of ['metadata', ...FINDING_SECTIONS_PROPS]) {
+      it(`should have a ${s} proerty`, () => {
+        expect(finding.hasOwnProperty(s)).toBe(true)
+      })
+    }
+  }
+
+  describe.only('getFindingsData', () => {
+    describe('test finding', () => {
+      const description = 'This is a test..'
+      const recommendation = 'This is a recomendation example'
+      const status = 'Finding STATUS'
+      const fmd = `# TEST
+--- finding
+
+id: xxx-001
+title: Untitled finding
+likelihood: low
+impact: low
+risk: low
+resolution: open
+status: ⚠
+location: test
+fixed: false
+
+#### Description
+
+${description}
+
+#### Recommendation
+
+${recommendation}
+
+#### Status
+
+${status}
+
+/--
+      `
+
+      const props: { [key: string]: any } = {
+        description,
+        recommendation,
+        status
+      }
+      const data: { [key: string]: any } = getFindingsData(MdToObj()(fmd))[0]
+      for (const p in props) {
+        it('should have the section content', () => {
+          expect(data[p]).toContain(props[p])
+        })
+      }
+    })
+
+    describe('example test', () => {
+      const findings = getFindingsData(MdToObj()(example))
+      for (const finding of findings) {
+        testFindingData(finding)
+      }
     })
   })
 })
