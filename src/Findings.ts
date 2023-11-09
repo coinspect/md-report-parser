@@ -431,3 +431,7 @@ export const getFindingFieldValueAttributes = (
 
 export const getFindingWrapperId = (id: string) =>
   `${FINDING}${FINDING_ID_SEPARATOR}${id}`
+
+export const getRiskKey = (risk: string) => {
+  flipObject(RISK)[risk]
+}
