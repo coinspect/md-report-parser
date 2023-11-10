@@ -58,10 +58,6 @@ export const FINDING_SECTIONS_PROPS = FINDING_SECTIONS.map((x) =>
   x.toLowerCase()
 )
 
-export const FINDING_SECTIONS_PROPS = FINDING_SECTIONS.map((x) =>
-  x.toLowerCase()
-)
-
 export type FindingMetadata = {
   id?: string
   impact: string
