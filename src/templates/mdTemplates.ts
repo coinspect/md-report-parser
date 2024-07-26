@@ -52,7 +52,7 @@ ${metadataBlock}
 
 ## 1. Executive Summary
 
-In **{MONTH} {YEAR}**, (**Client**)[http://client.com] engaged [Coinspect](https://coinspect.com) to perform a 
+In **{MONTH} {YEAR}**, [**Client**](http://client.com) engaged [Coinspect](https://coinspect.com) to perform a 
 { ${SOURCE_CODE_AUDIT_KEY} | ${SMART_CONTRACT_AUDIT_KEY} } of { PROJECT NAME }. The objective of the project 
  was to evaluate the security of the application.
 
@@ -60,7 +60,7 @@ The { PROJECT NAME } is a ... { SHORT DESCRIPTION OF PROJECT }
 
 [[${FINDING_RESUME_STATUS}]]
 
-**XXX-001** represents the risks associated with the current storage of secrets. **XXX-002**...
+\`XXX-001\` represents the risks associated with the current storage of secrets. \'XXX-002\'...
 
 ## 2. Summary of Findings
 This section provides a concise overview of all the findings in the report grouped by remediation status and sorted by estimated total risk.
@@ -74,7 +74,9 @@ removeUntil: 3
 
 ### 2.2 ${FINDING_STATUS_WARNING_TITLE}
 
-These issues have been addressed, but their risk has not been fully mitigated. Any future changes to the codebase should be carefully evaluated to avoid exacerbating these issues or increasing their probability.
+Issues with risk in this list have been addressed to some extent but not fully mitigated. 
+Any future changes to the codebase should be carefully evaluated to avoid exacerbating these 
+issues or increasing their probability.
 
 Findings with a risk of \`None\` pose no threat, but document an implicit 
 assumption which must be taken into account. Once acknowledged, these are 
