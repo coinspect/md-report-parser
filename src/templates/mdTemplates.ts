@@ -52,9 +52,9 @@ ${metadataBlock}
 
 ## 1. Executive Summary
 
-In **{MONTH} {YEAR}**, [**Client**](http://client.com) engaged [Coinspect](https://coinspect.com) to perform a 
-{ ${SOURCE_CODE_AUDIT_KEY} | ${SMART_CONTRACT_AUDIT_KEY} } of { PROJECT NAME }. The objective of the project 
- was to evaluate the security of the application.
+In **{MONTH} {YEAR}**, [**Client**](http://client.com) engaged [Coinspect](https://coinspect.com) 
+to perform a { ${SOURCE_CODE_AUDIT_KEY} | ${SMART_CONTRACT_AUDIT_KEY} } of { PROJECT NAME }. 
+The objective of the project was to evaluate the security of the application.
 
 The { PROJECT NAME } is a ... { SHORT DESCRIPTION OF PROJECT }
 
@@ -63,10 +63,15 @@ The { PROJECT NAME } is a ... { SHORT DESCRIPTION OF PROJECT }
 \`XXX-001\` represents the risks associated with the current storage of secrets. \'XXX-002\'...
 
 ## 2. Summary of Findings
-This section provides a concise overview of all the findings in the report grouped by remediation status and sorted by estimated total risk.
+
+This section provides a concise overview of all the findings in the report grouped by remediation 
+status and sorted by estimated total risk.
 
 ### 2.1 ${FINDING_STATUS_PROBLEM_TITLE}
-These findings indicate potential risks that require some action. They must be addressed with modifications to the codebase or an explicit acceptance as part of the project's known security risks.
+
+These findings indicate potential risks that require some action. They must be addressed with 
+modifications to the codebase or an explicit acceptance as part of the project's 
+known security risks.
 
 [[name: ${FINDING_TABLE_STATUS_PROBLEM}
 removeUntil: 3
@@ -88,7 +93,8 @@ removeUntil: 3
 
 ### 2.3 ${FINDING_STATUS_OK_TITLE}
 
-These issues have been fully fixed or represent recommendations that could improve the long-term security posture of the project.
+These issues have been fully fixed or represent recommendations that could improve the 
+long-term security posture of the project.
 
 [[name: ${FINDING_TABLE_STATUS_OK}
 removeUntil: 3
@@ -96,8 +102,7 @@ removeUntil: 3
  
 ## 3. Scope 
 
-The scope was set to be the repository at {REPOSITORY_URL} at commit {COMMIT}.
-
+The scope was set to be the repository at { REPOSITORY_URL } at commit { COMMIT }.
 
 ## 4. Assessment 
 
@@ -118,14 +123,17 @@ ${findings.join('\n')}
 The contents of this report are provided "as is" without warranty of any kind. 
 Coinspect is not responsible for any consequences of using the information contained herein.
 
-This report represents a point-in-time and time-boxed evaluation conducted within a specific timeframe and scope agreed upon with the client. 
-The assessment's findings and recommendations are based on the information, source code, and systems access provided by the client during the review period.
+This report represents a point-in-time and time-boxed evaluation conducted within a specific timeframe
+and scope agreed upon with the client. The assessment's findings and recommendations are based on the 
+information, source code, and systems access provided by the client during the review period.
 
 The assessment's findings should not be considered an exhaustive list of all potential security issues. 
-This report does not cover out-of-scope components that may interact with the analyzed system, nor does it assess the operational security of the organization that developed and deployed the system.
+This report does not cover out-of-scope components that may interact with the analyzed system, nor 
+does it assess the operational security of the organization that developed and deployed the system.
 
-This report does not imply ongoing security monitoring or guaranteeing the current security status of the assessed system. 
-Due to the dynamic nature of information security threats, new vulnerabilities may emerge after the assessment period.
+This report does not imply ongoing security monitoring or guaranteeing the current security status of
+the assessed system.  Due to the dynamic nature of information security threats, new vulnerabilities 
+may emerge after the assessment period.
 
 This report should not be considered an endorsement or disapproval of any project or team. 
 It does not provide investment advice and should not be used to make investment decisions.
