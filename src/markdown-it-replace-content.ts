@@ -87,14 +87,10 @@ export default function render_lists(
       }
 
       const html = renderListCb(state.src, placeholderData)
-      if (undefined === html || null === html) {
-        return false
-      }
-
       const removeUntil = placeholderData[PLACEHOLDER_KEYS.removeUntil]
 
       // remove content
-      if (html === '' && removeUntil) {
+      if ((!html || html.trim() === '') && removeUntil) {
         const currentTokenIndex = state.tokens.length - 1
         let sectionStartIndex = findPreviousHeading(
           state.tokens,
@@ -102,10 +98,10 @@ export default function render_lists(
           removeUntil
         )
 
-        // Remove tokens from the start of the placeholder to the end of the section
-        if (sectionStartIndex <= currentTokenIndex) {
+        // Remove tokens from the heading to the end of the section
+        if (sectionStartIndex >= 0 && sectionStartIndex <= currentTokenIndex) {
           state.tokens.splice(
-            sectionStartIndex - 1,
+            sectionStartIndex,
             currentTokenIndex - sectionStartIndex + 1
           )
         }

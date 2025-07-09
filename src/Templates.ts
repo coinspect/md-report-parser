@@ -49,5 +49,5 @@ export const renderTemplate = (
   if (!template) {
     throw new Error(`Unknown template: ${name}`)
   }
-  return template(data, fields, sort)
+  return template(data, fields, sort) || ''
 }
