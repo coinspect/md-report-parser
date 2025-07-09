@@ -86,7 +86,7 @@ export default function render_lists(
         return false
       }
 
-      const html = renderListCb(state.src, placeholderData) || ''
+      const html = renderListCb(state.src, placeholderData)
       if (undefined === html || null === html) {
         return false
       }
@@ -111,7 +111,7 @@ export default function render_lists(
         }
       }
 
-      if (html) {
+      if (html && html.trim() !== '') {
         let token = state.push(openName, tag, 1)
         token.block = true
         token.attrJoin('class', name)
