@@ -4,9 +4,13 @@ import { JSDOM } from 'jsdom'
 describe('Integration Test: HTML Structure Broken by Empty Tables', () => {
   const parser = MdParser()
 
-  const createTestReport = (includeFindings: { problem?: boolean; warning?: boolean; ok?: boolean }) => {
+  const createTestReport = (includeFindings: {
+    problem?: boolean
+    warning?: boolean
+    ok?: boolean
+  }) => {
     const findings = []
-    
+
     if (includeFindings.problem) {
       findings.push(`--- finding
 id: TEST-001
@@ -153,28 +157,36 @@ The assessment represents a point-in-time evaluation.
       const html = parser.render(md)
       const dom = new JSDOM(html)
       const container = dom.window.document.body
-      
+
       // Find the "3. Scope" section
-      const scopeSection = Array.from(container.querySelectorAll('h2'))
-        .find(h2 => h2.textContent?.includes('Scope'))
-      
+      const scopeSection = Array.from(container.querySelectorAll('h2')).find(
+        (h2) => h2.textContent?.includes('Scope')
+      )
+
       expect(scopeSection).not.toBeNull()
-      
+
       // Check that the scope section is NOT nested inside any table-related divs
-      const tableStatusDivs = container.querySelectorAll('div[class*="finding-table-status"]')
-      
+      const tableStatusDivs = container.querySelectorAll(
+        'div[class*="finding-table-status"]'
+      )
+
       for (const tableDiv of tableStatusDivs) {
         const scopeInsideTable = tableDiv.querySelector('h2')
-        if (scopeInsideTable && scopeInsideTable.textContent?.includes('Scope')) {
-          throw new Error(`Scope section should not be nested inside table div: ${tableDiv.className}`)
+        if (
+          scopeInsideTable &&
+          scopeInsideTable.textContent?.includes('Scope')
+        ) {
+          throw new Error(
+            `Scope section should not be nested inside table div: ${tableDiv.className}`
+          )
         }
       }
-      
+
       // Verify the scope section is a direct child of the main container structure
       // and not accidentally nested inside table divs
       const scopeParent = scopeSection?.parentElement
       expect(scopeParent).not.toBeNull()
-      
+
       // The scope section should not be inside any finding-table-status div
       let currentParent = scopeParent
       while (currentParent && currentParent !== container) {
@@ -188,16 +200,23 @@ The assessment represents a point-in-time evaluation.
       const html = parser.render(md)
       const dom = new JSDOM(html)
       const container = dom.window.document.body
-      
+
       // Get all h2 sections in order
-      const h2Sections = Array.from(container.querySelectorAll('h2'))
-        .map(h2 => h2.textContent?.trim())
-      
+      const h2Sections = Array.from(container.querySelectorAll('h2')).map(
+        (h2) => h2.textContent?.trim()
+      )
+
       // Find indexes to check order
-      const scopeIndex = h2Sections.findIndex(title => title?.includes('Scope'))
-      const summaryIndex = h2Sections.findIndex(title => title?.includes('Summary of Findings'))
-      const assessmentIndex = h2Sections.findIndex(title => title?.includes('Assessment'))
-      
+      const scopeIndex = h2Sections.findIndex((title) =>
+        title?.includes('Scope')
+      )
+      const summaryIndex = h2Sections.findIndex((title) =>
+        title?.includes('Summary of Findings')
+      )
+      const assessmentIndex = h2Sections.findIndex((title) =>
+        title?.includes('Assessment')
+      )
+
       // Scope should come after Summary of Findings and before Assessment
       expect(scopeIndex).toBeGreaterThan(summaryIndex)
       expect(assessmentIndex).toBeGreaterThan(scopeIndex)
@@ -208,16 +227,23 @@ The assessment represents a point-in-time evaluation.
       const html = parser.render(md)
       const dom = new JSDOM(html)
       const container = dom.window.document.body
-      
+
       // Get all h2 sections in order
-      const h2Sections = Array.from(container.querySelectorAll('h2'))
-        .map(h2 => h2.textContent?.trim())
-      
+      const h2Sections = Array.from(container.querySelectorAll('h2')).map(
+        (h2) => h2.textContent?.trim()
+      )
+
       // Find indexes to check order
-      const scopeIndex = h2Sections.findIndex(title => title?.includes('Scope'))
-      const summaryIndex = h2Sections.findIndex(title => title?.includes('Summary of Findings'))
-      const assessmentIndex = h2Sections.findIndex(title => title?.includes('Assessment'))
-      
+      const scopeIndex = h2Sections.findIndex((title) =>
+        title?.includes('Scope')
+      )
+      const summaryIndex = h2Sections.findIndex((title) =>
+        title?.includes('Summary of Findings')
+      )
+      const assessmentIndex = h2Sections.findIndex((title) =>
+        title?.includes('Assessment')
+      )
+
       // Scope should come after Summary of Findings and before Assessment
       expect(scopeIndex).toBeGreaterThan(summaryIndex)
       expect(assessmentIndex).toBeGreaterThan(scopeIndex)
@@ -228,16 +254,23 @@ The assessment represents a point-in-time evaluation.
       const html = parser.render(md)
       const dom = new JSDOM(html)
       const container = dom.window.document.body
-      
+
       // Get all h2 sections in order
-      const h2Sections = Array.from(container.querySelectorAll('h2'))
-        .map(h2 => h2.textContent?.trim())
-      
+      const h2Sections = Array.from(container.querySelectorAll('h2')).map(
+        (h2) => h2.textContent?.trim()
+      )
+
       // Find indexes to check order
-      const scopeIndex = h2Sections.findIndex(title => title?.includes('Scope'))
-      const summaryIndex = h2Sections.findIndex(title => title?.includes('Summary of Findings'))
-      const assessmentIndex = h2Sections.findIndex(title => title?.includes('Assessment'))
-      
+      const scopeIndex = h2Sections.findIndex((title) =>
+        title?.includes('Scope')
+      )
+      const summaryIndex = h2Sections.findIndex((title) =>
+        title?.includes('Summary of Findings')
+      )
+      const assessmentIndex = h2Sections.findIndex((title) =>
+        title?.includes('Assessment')
+      )
+
       // Scope should come after Summary of Findings and before Assessment
       expect(scopeIndex).toBeGreaterThan(summaryIndex)
       expect(assessmentIndex).toBeGreaterThan(scopeIndex)
