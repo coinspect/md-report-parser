@@ -275,5 +275,52 @@ The assessment represents a point-in-time evaluation.
       expect(scopeIndex).toBeGreaterThan(summaryIndex)
       expect(assessmentIndex).toBeGreaterThan(scopeIndex)
     })
+
+    it('should remove empty sections when removeUntil is specified', () => {
+      const md = createTestReport({ problem: false, warning: false, ok: false })
+      const html = parser.render(md)
+      const dom = new JSDOM(html)
+      const container = dom.window.document.body
+
+      // Check that placeholder text is NOT present in the final HTML
+      expect(html).not.toContain('[[name: finding-table-status-problem')
+      expect(html).not.toContain('[[name: finding-table-status-warning')
+      expect(html).not.toContain('[[name: finding-table-status-ok')
+      expect(html).not.toContain('removeUntil:')
+
+      // Check that empty sections are completely removed (including headings)
+      const h3Sections = Array.from(container.querySelectorAll('h3')).map(
+        (h3) => h3.textContent?.trim()
+      )
+
+      // These sections should be completely removed when tables are empty
+      expect(
+        h3Sections.some((title) =>
+          title?.includes('Findings with pending resolution')
+        )
+      ).toBe(false)
+      expect(
+        h3Sections.some((title) =>
+          title?.includes('Findings where caution is advised')
+        )
+      ).toBe(false)
+      expect(
+        h3Sections.some((title) =>
+          title?.includes('Solved issues & recommendations')
+        )
+      ).toBe(false)
+
+      // But the main sections should still exist
+      const h2Sections = Array.from(container.querySelectorAll('h2')).map(
+        (h2) => h2.textContent?.trim()
+      )
+      expect(
+        h2Sections.some((title) => title?.includes('Summary of Findings'))
+      ).toBe(true)
+      expect(h2Sections.some((title) => title?.includes('Scope'))).toBe(true)
+      expect(h2Sections.some((title) => title?.includes('Assessment'))).toBe(
+        true
+      )
+    })
   })
 })
